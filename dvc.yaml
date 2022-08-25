@@ -17,6 +17,7 @@ stages:
   process:
     cmd: Rscript stages/1_process.R
     deps:
-      - download/toxvaldb
+      - stages/1_process.R
+      - download/toxvaldb      
     outs:
       - data/toxvaldb.parquet

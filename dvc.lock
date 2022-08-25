@@ -35,7 +35,10 @@ stages:
       md5: 818de6350a7df3c2e027a860f36169d7.dir
       size: 1059885906
       nfiles: 4
+    - path: stages/1_process.R
+      md5: b50f6afc2b0195f561570161fe4b4b58
+      size: 296
     outs:
     - path: data/toxvaldb.parquet
-      md5: 9fadce1953c969d8e5b2c2285eb34f4d
-      size: 138182400
+      md5: 5c5133524af66adfb57bd8f58460a2fa
+      size: 138182421
