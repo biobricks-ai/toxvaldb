@@ -10,3 +10,32 @@ stages:
     - path: data/mtcars.parquet
       md5: 77cf29accf9535522fad7db1486eff9a
       size: 6243
+  download:
+    cmd: wget -P ./download/toxvaldb -m ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+    deps:
+    - path: download/simplehash.txt
+      md5: ae481142d05df44dc26953a941e79d31
+      size: 293
+    outs:
+    - path: download/toxvaldb
+      md5: 818de6350a7df3c2e027a860f36169d7.dir
+      size: 1059885906
+      nfiles: 4
+  simplehash:
+    cmd: ncftpls -R ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+      > download/simplehash.txt
+    outs:
+    - path: download/simplehash.txt
+      md5: ae481142d05df44dc26953a941e79d31
+      size: 290
+  process:
+    cmd: Rscript stages/1_process.R
+    deps:
+    - path: download/toxvaldb
+      md5: 818de6350a7df3c2e027a860f36169d7.dir
+      size: 1059885906
+      nfiles: 4
+    outs:
+    - path: data/toxvaldb.parquet
+      md5: 9fadce1953c969d8e5b2c2285eb34f4d
+      size: 138182400

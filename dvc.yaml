@@ -1,9 +1,22 @@
 # example stages
 # see https://dvc.org/doc/user-guide/project-structure/dvcyaml-files#pipelines-files-dvcyaml
 stages:
-  1-stage:
-    cmd: Rscript stages/01-stage.R
-    deps:
-      - stages/01-stage.R
+
+  simplehash: # create a simple hash from ftp listing
+    cmd: ncftpls -R ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/ > download/simplehash.txt
+    outs: 
+      - download/simplehash.txt
+
+  download:
+    cmd: wget -P ./download/toxvaldb -m ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+    deps: 
+      - download/simplehash.txt
     outs:
-      - data/mtcars.parquet
+      - download/toxvaldb
+
+  process:
+    cmd: Rscript stages/1_process.R
+    deps:
+      - download/toxvaldb
+    outs:
+      - data/toxvaldb.parquet
