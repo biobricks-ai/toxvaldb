@@ -28,15 +28,13 @@ toxvaldb |> count(toxval_type,sort=T)  # count tox types
 #  LD50         98647
 # … with 3391 more rows
 
-toxvaldb |> group_by(source) |> 
+toxvaldb |> group_by(source) |> # count chems by source
   summarize(num_chem=n_distinct(dtxsid)) |> 
   arrange(-num_chem)
-# # A tibble: 43 × 2
-#    source                         num_chem
-#    <chr>                            <int>
-#  1 TEST                             13547
-#  2 ECHA IUCLID                       8911
-#  3 ECHA eChemPortal 2020             8309
+#  source                         num_chem
+#  TEST                             13547
+#  ECHA IUCLID                       8911
+#  ECHA eChemPortal 2020             8309
 # … with 40 more rows
 ```
 
