@@ -3,8 +3,6 @@ on: [push]
 jobs:
   bricktools-check:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: bricktools check
         uses: biobricks-ai/github-actions/bricktools-check@main
