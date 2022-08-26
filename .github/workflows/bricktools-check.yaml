@@ -3,7 +3,7 @@ on: [push]
 jobs:
   bricktools-check:
     runs-on: ubuntu-latest
-    container: insilica/biobricks:2.0
+    container: insilica/biobricks:latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
