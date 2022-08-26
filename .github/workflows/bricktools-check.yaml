@@ -3,13 +3,8 @@ on: [push]
 jobs:
   bricktools-check:
     runs-on: ubuntu-latest
-    container: insilica/biobricks:latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v3
-
-    - name: bricktools check
-      run: bricktools::check(".")
-      shell: Rscript {0}
+      - name: bricktools check
+        uses: biobricks-ai/github-actions/bricktools-check@v0.0.5
