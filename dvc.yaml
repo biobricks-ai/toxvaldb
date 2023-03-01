@@ -3,12 +3,12 @@
 stages:
 
   simplehash: # create a simple hash from ftp listing
-    cmd: ncftpls -R ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/ > download/simplehash.txt
+    cmd: stages/0_invalidate.sh
     outs: 
       - download/simplehash.txt
 
   download:
-    cmd: wget -P ./download/toxvaldb -m ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+    cmd: stages/1_download.sh
     deps: 
       - download/simplehash.txt
     outs:
