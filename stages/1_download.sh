@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-wget -P ./download/toxvaldb -m -N \
-ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+mkdir -p download/toxvaldb
+cd ./download/toxvaldb
+echo $(pwd)
+ncftpget -R -v -u anonymous -p '' -T \
+  ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
+cd ../../

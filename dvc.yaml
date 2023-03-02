@@ -3,21 +3,20 @@
 stages:
 
   simplehash: # create a simple hash from ftp listing
-    cmd: stages/0_invalidate.sh
+    cmd: bash stages/0_invalidate.sh
     outs: 
       - download/simplehash.txt
 
   download:
-    cmd: stages/1_download.sh
+    cmd: bash stages/1_download.sh
     deps: 
       - download/simplehash.txt
     outs:
       - download/toxvaldb
 
   process:
-    cmd: Rscript stages/1_process.R
+    cmd: Rscript stages/2_process.R
     deps:
-      - stages/1_process.R
-      - download/toxvaldb      
+      - download/toxvaldb
     outs:
-      - data/toxvaldb.parquet
+      - brick/toxvaldb.parquet
