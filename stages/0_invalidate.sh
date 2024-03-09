@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-ncftpls -R ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/ \
-> download/simplehash.txt
+mkdir -p download
+url="https://gaftp.epa.gov/Comptox/Staff/rjudson/datasets/ToxValDB/"
+curl -k $url > download/toxvaldb.html
+

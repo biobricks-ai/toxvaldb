@@ -5,12 +5,13 @@ stages:
   simplehash: # create a simple hash from ftp listing
     cmd: bash stages/0_invalidate.sh
     outs: 
-      - download/simplehash.txt
+      - download/toxvaldb.html
 
   download:
     cmd: bash stages/1_download.sh
     deps: 
-      - download/simplehash.txt
+      - stages/1_download.sh
+      - download/toxvaldb.html
     outs:
       - download/toxvaldb
 

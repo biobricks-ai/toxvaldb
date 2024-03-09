@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 mkdir -p download/toxvaldb
-cd ./download/toxvaldb
-echo $(pwd)
-ncftpget -R -v -u anonymous -p '' -T \
-  ftp://newftp.epa.gov/COMPTOX/STAFF/rjudson/datasets/ToxValDB/
-cd ../../
+
+# Extract links from the HTML file
+grep -oP 'href="\K[^"]*' download/toxvaldb.html | grep -v "Parent Directory" > download/links.txt
+
+# Download each file
+cd download/toxvaldb
+url="https://gaftp.epa.gov/Comptox/Staff/rjudson/datasets/ToxValDB/"
+cat ../links.txt | while read line; do
+    wget --no-check-certificate "${url}${line}"
+done
+cd ../..

@@ -1,5 +1,6 @@
 pacman::p_load(tidyverse)
 
+# read the 
 # only one csv right now
 csv <- fs::dir_ls("download",recurse=T, type="file", regexp=".csv$")
 tbl <- readr::read_csv(csv[1])

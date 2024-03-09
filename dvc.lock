@@ -1,40 +1,40 @@
 schema: '2.0'
 stages:
-  1-stage:
-    cmd: Rscript stages/01-stage.R
-    deps:
-    - path: stages/01-stage.R
-      md5: c468dc14527e00c339f146e1dba2bd3b
-      size: 118
-    outs:
-    - path: data/mtcars.parquet
-      md5: 77cf29accf9535522fad7db1486eff9a
-      size: 6243
+
   download:
     cmd: bash stages/1_download.sh
     deps:
-    - path: download/simplehash.txt
-      md5: 8d56f44ff7f711e9ea8c736738ba07b7
-      size: 290
+    - path: download/toxvaldb.html
+      hash: md5
+      md5: f0ba239af2fc071aab367bb5ad526b2f
+      size: 1520
+    - path: stages/1_download.sh
+      hash: md5
+      md5: 41bb3c81d1fb318161f67b39e2c8626c
+      size: 393
     outs:
     - path: download/toxvaldb
-      md5: f08824210f4443604fe52ef916cfa192.dir
-      size: 1059885613
-      nfiles: 3
+      hash: md5
+      md5: 081ea98a3a46dd974d99c2d1f269b893.dir
+      size: 1059891693
+      nfiles: 7
   simplehash:
     cmd: bash stages/0_invalidate.sh
     outs:
-    - path: download/simplehash.txt
-      md5: 8d56f44ff7f711e9ea8c736738ba07b7
-      size: 290
+    - path: download/toxvaldb.html
+      hash: md5
+      md5: f0ba239af2fc071aab367bb5ad526b2f
+      size: 1520
   process:
     cmd: Rscript stages/2_process.R
     deps:
     - path: download/toxvaldb
-      md5: f08824210f4443604fe52ef916cfa192.dir
-      size: 1059885613
-      nfiles: 3
+      hash: md5
+      md5: 081ea98a3a46dd974d99c2d1f269b893.dir
+      size: 1059891693
+      nfiles: 7
     outs:
     - path: brick/toxvaldb.parquet
-      md5: 4ba98786706d2d62849c9b207457c453
-      size: 138182413
+      hash: md5
+      md5: 4ccb21ef9be803c4d74a39832005af5b
+      size: 138182393
