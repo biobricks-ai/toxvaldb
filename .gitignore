@@ -1,2 +1,5 @@
 /download
-/data.txt
+/brick
+/.venv
+__pycache__/
+*.pyc

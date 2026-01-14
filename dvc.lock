@@ -2,22 +2,26 @@ schema: '2.0'
 stages:
 
   download:
-    cmd: bash stages/1_download.sh
+    cmd: python stages/1_download.py
     deps:
-    - path: download/toxvaldb.html
+    - path: download/version.json
       hash: md5
-      md5: f0ba239af2fc071aab367bb5ad526b2f
-      size: 1520
-    - path: stages/1_download.sh
+      md5: 074c7b0c8b7ea397d62329c20411cb6c
+      size: 150
+    - path: stages/1_download.py
       hash: md5
-      md5: 41bb3c81d1fb318161f67b39e2c8626c
-      size: 393
+      md5: 664042cc5c10ef4fc6104f005ef47b84
+      size: 5085
     outs:
-    - path: download/toxvaldb
+    - path: download/excel
       hash: md5
-      md5: 081ea98a3a46dd974d99c2d1f269b893.dir
-      size: 1059891693
-      nfiles: 7
+      md5: e5547dd987a9953d8a5f56c368332078.dir
+      size: 71002938
+      nfiles: 62
+    - path: download/manifest.json
+      hash: md5
+      md5: 7eb89ad891520cd028762143d5cee44e
+      size: 3492
   simplehash:
     cmd: bash stages/0_invalidate.sh
     outs:
@@ -26,15 +30,29 @@ stages:
       md5: f0ba239af2fc071aab367bb5ad526b2f
       size: 1520
   process:
-    cmd: Rscript stages/2_process.R
+    cmd: python stages/2_process.py
     deps:
-    - path: download/toxvaldb
+    - path: download/manifest.json
       hash: md5
-      md5: 081ea98a3a46dd974d99c2d1f269b893.dir
-      size: 1059891693
-      nfiles: 7
+      md5: 7eb89ad891520cd028762143d5cee44e
+      size: 3492
+    - path: stages/2_process.py
+      hash: md5
+      md5: 945f0fcd8a4b40cf0a94f74bd4889ada
+      size: 3527
     outs:
     - path: brick/toxvaldb.parquet
       hash: md5
-      md5: 4ccb21ef9be803c4d74a39832005af5b
-      size: 138182393
+      md5: 63bf1ede2257cb34e8ef594b26761182
+      size: 24981287
+    - path: brick/version.json
+      hash: md5
+      md5: 073fbc4b594e5bbf2cc9457d2c02c85e
+      size: 149
+  check_version:
+    cmd: bash stages/0_invalidate.sh
+    outs:
+    - path: download/version.json
+      hash: md5
+      md5: 074c7b0c8b7ea397d62329c20411cb6c
+      size: 150

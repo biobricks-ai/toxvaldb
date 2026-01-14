@@ -1,23 +1,25 @@
-# example stages
-# see https://dvc.org/doc/user-guide/project-structure/dvcyaml-files#pipelines-files-dvcyaml
 stages:
 
-  simplehash: # create a simple hash from ftp listing
+  check_version:
     cmd: bash stages/0_invalidate.sh
-    outs: 
-      - download/toxvaldb.html
+    outs:
+      - download/version.json
 
   download:
-    cmd: bash stages/1_download.sh
-    deps: 
-      - stages/1_download.sh
-      - download/toxvaldb.html
+    cmd: python stages/1_download.py
+    deps:
+      - stages/1_download.py
+      - download/version.json
     outs:
-      - download/toxvaldb
+      - download/manifest.json
+      - download/excel:
+          persist: true
 
   process:
-    cmd: Rscript stages/2_process.R
+    cmd: python stages/2_process.py
     deps:
-      - download/toxvaldb
+      - stages/2_process.py
+      - download/manifest.json
     outs:
       - brick/toxvaldb.parquet
+      - brick/version.json

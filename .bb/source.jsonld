@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "biobricks": "https://biobricks.ai/ns#",
+    "schema": "https://schema.org/"
+  },
+  "@type": "dcat:Dataset",
+  "@id": "https://biobricks.ai/bricks/toxvaldb",
+  "dcterms:title": "ToxValDB - EPA Toxicity Value Database",
+  "dcterms:description": "ToxValDB is a large compilation of human health-relevant in vivo toxicology data from EPA, including experimental toxicity studies and derived regulatory values (LD50, LC50, NOAEL, LOAEL, RfD, etc.) from 36+ sources covering 42,000+ chemicals with 242,000+ records.",
+  "dcterms:license": "https://www.usa.gov/government-works",
+  "schema:version": "9.7.0",
+  "biobricks:sourceVersion": "v9.7.0",
+  "biobricks:sourceVersionDate": "2025-09-24",
+  "biobricks:figshareArticleId": "20394501",
+  "biobricks:figshareVersion": 11,
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": "BioBricks.ai automated pipeline",
+    "prov:endedAtTime": {
+      "@type": "xsd:dateTime",
+      "@value": "2026-01-14T00:00:00Z"
+    }
+  },
+  "prov:wasDerivedFrom": [
+    {
+      "@type": "dcat:Dataset",
+      "@id": "https://doi.org/10.23645/epacomptox.20394501",
+      "dcterms:title": "ToxValDB v9.7.0",
+      "dcterms:publisher": "U.S. Environmental Protection Agency",
+      "dcat:accessURL": "https://epa.figshare.com/articles/dataset/ToxValDB_v9_1/20394501"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "@id": "https://clowder.edap-cluster.com/datasets/61147fefe4b0856fdc65639b",
+      "dcterms:title": "EPA CompTox Clowder Repository",
+      "dcat:accessURL": "https://clowder.edap-cluster.com/datasets/61147fefe4b0856fdc65639b"
+    }
+  ],
+  "dcterms:references": [
+    {
+      "@type": "schema:ScholarlyArticle",
+      "@id": "https://doi.org/10.1016/j.comtox.2025.100341",
+      "dcterms:title": "Development of the toxicity values database, ToxValDB: A curated resource for experimental and derived human health-relevant toxicity data",
+      "dcterms:date": "2025"
+    }
+  ],
+  "dcat:keyword": [
+    "toxicology",
+    "in vivo",
+    "LD50",
+    "LC50",
+    "NOAEL",
+    "LOAEL",
+    "RfD",
+    "toxicity values",
+    "EPA",
+    "regulatory toxicology",
+    "human health"
+  ]
+}
